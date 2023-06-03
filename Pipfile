@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+pytube = "*"
+librosa = "*"
+numpy = "*"
+tqdm = "*"
+beautifulsoup4 = "*"
+requests = "*"
+spotipy = "*"
+streamlit = "*"
+matplotlib = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
