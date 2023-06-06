@@ -1,8 +1,6 @@
 import os
 import argparse
-import pandas as pd
 from pytube import YouTube
-import librosa
 from tqdm import tqdm
 import subprocess
 
@@ -31,18 +29,12 @@ def download_audio(url, output_dir, downloaded_files):
         new_wav_path = os.path.join(output_dir, title)
         subprocess.run(f'ffmpeg -i "{new_file_path}" -acodec pcm_s16le -ar 44100 "{new_wav_path}" -y', capture_output=True)
 
-        # Analyze audio for BPM and key
-        bpm = analyze_bpm(new_wav_path)
 
         # Clean up the temporary directory and file
         os.remove(new_file_path)
         os.rmdir(temp_dir)
 
         print(f'\tSuccessfully downloaded: {title}')
-
-        # Store the results in a CSV file
-        csv_path = os.path.join(output_dir, 'audio_info.csv')
-        store_audio_info(csv_path, title, bpm)
 
         # Add the downloaded file name to the set
         downloaded_files.add(title)
@@ -53,24 +45,6 @@ def download_audio(url, output_dir, downloaded_files):
 def escape_title(path):
     return path.replace('|', '_').replace(' ', '_').replace('(', '_').replace(')', '').replace(':', '_')
 
-
-def analyze_bpm(file_path):
-    audio, sr = librosa.load(file_path)
-
-    # Extract BPM
-    tempo, _ = librosa.beat.beat_track(y=audio, sr=sr)
-
-    return tempo
-
-
-def store_audio_info(csv_path, title, bpm):
-    data = {'Title': [title], 'BPM': [bpm]}
-    df = pd.DataFrame(data)
-
-    if not os.path.exists(csv_path):
-        df.to_csv(csv_path, index=False)
-    else:
-        df.to_csv(csv_path, mode='a', header=False, index=False)
 
 def main():
     parser = argparse.ArgumentParser(description='Download audio from YouTube videos as WAV files and extract BPM')
