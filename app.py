@@ -10,6 +10,7 @@ import numpy as np
 
 STORED_PLAYLISTS = {
         "Sal + Preston": "https://open.spotify.com/playlist/2w9RXal3mjqEgvNjRA13qp?si=f1dcb6beb0d34911",
+        "Season Finale": "https://open.spotify.com/playlist/2YlweeE0qha0ITfvpeNwSr?si=4e113a106fce4950",
         "Other": None
     }
 
