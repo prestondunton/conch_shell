@@ -35,16 +35,11 @@ def string_to_camelot(key_string):
         "A Major": "11B",
         "E Major": "12B",
         "B Major": "1B",
-        "F# Major": "2B",
-        "Gb Major": "2B",
-        "C# Major": "3B",
-        "Db Major": "3B",
-        "G# Major": "4B",
-        "Ab Major": "4B",
-        "D# Major": "5B",
-        "Eb Major": "5B",
-        "A# Major": "6B",
-        "Bb Major": "6B",
+        "F# / Gb Major": "2B",
+        "C# / Db Major": "3B",
+        "G# / Ab Major": "4B",
+        "D# / Eb Major": "5B",
+        "A# / Bb Major": "6B",
         "F Major": "7B",
 
         "C Minor": "5A",
@@ -53,16 +48,11 @@ def string_to_camelot(key_string):
         "A Minor": "8A",
         "E Minor": "9A",
         "B Minor": "10A",
-        "F# Minor": "11A",
-        "Gb Minor": "11A",
-        "C# Minor": "12A",
-        "Db Minor": "12A",
-        "G# Minor": "1A",
-        "Ab Minor": "1A",
-        "D# Minor": "2A",
-        "Eb Minor": "2A",
-        "A# Minor": "3A",
-        "Bb Minor": "3A",
+        "F# / Gb Minor": "11A",
+        "C# / Db Minor": "12A",
+        "G# / Ab Minor": "1A",
+        "D# / Eb Minor": "2A",
+        "A# / Bb Minor": "3A",
         "F Minor": "4A",
 
         
@@ -71,7 +61,7 @@ def string_to_camelot(key_string):
 
 # Function to convert pitch class and mode to string representation
 def pitch_class_mode_to_string(pitch_class, mode):
-    pitch_classes = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Ab", "A", "A#", "Bb", "B"]
+    pitch_classes = ["C", "C# / Db",  "D", "D# / Eb", "E", "F", "F# / Gb", "G", "G# / Ab", "A", "A# / Bb", "B"]
     modes = ["Minor", "Major"]
     return pitch_classes[pitch_class] + " " + modes[mode]
 
@@ -79,7 +69,7 @@ def pitch_class_mode_to_string(pitch_class, mode):
 def get_camelot_number(camelot_key):
     try:
         return int(camelot_key[:-1])
-    except:
+    except: 
         return "Unknown"
 
 
@@ -191,7 +181,10 @@ def main():
                    # Function to apply color to rows and adjust font color based on background color
                     def apply_color_and_font_color(row):
                         value = row['Camelot Number']
-                        color_index = int(value) - min_value
+                        if value != 'Unknown':
+                            color_index = int(value) - min_value
+                        else:
+                            color_index = 0
                         color = mcolors.to_hex(color_map(color_index))
                         font_color = 'white' if np.mean(mcolors.to_rgb(color)) < 0.5 else 'black'
                         return [f'background-color: {color}; color: {font_color}'] * len(row)
