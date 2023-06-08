@@ -96,12 +96,20 @@ def get_playlist_tracks(playlist_url):
     playlist_id = playlist_url.split("/")[-1].split("?")[0]
 
     # Retrieve playlist tracks
-    tracks = sp.playlist_tracks(playlist_id)
+#    tracks = sp.playlist_tracks(playlist_id)
+#    print(tracks)
+
+    results = sp.playlist_tracks(playlist_id)
+    tracks = results['items']
+    while results['next']:
+        results = sp.next(results)
+        tracks.extend(results['items'])
+
+    tracks = [track["track"] for track in tracks]
 
     # Process each track in the playlist
     data = []
-    for item in tracks["items"]:
-        track = item["track"]
+    for track in tracks:
 
         # Extract desired information for each track
         track_name = track["name"]
