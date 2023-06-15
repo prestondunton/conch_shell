@@ -203,6 +203,13 @@ def main():
                     st.dataframe(styled_df)
 
 
+                    st.download_button(
+                        "Press to Download",
+                        playlist_df.to_csv(index=True).encode('utf-8'),
+                        "conch_shell_analysis.csv",
+                        "text/csv",
+                        key='download-csv'
+                        )
 
                 else:
                     st.info("No tracks found in the playlist.")
