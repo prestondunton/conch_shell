@@ -13,7 +13,7 @@ def download_audio(url, output_dir, downloaded_files):
         print(f'\nDownloading {title}')
 
         if title in downloaded_files:
-            print(f'\t{title} has already been downloaded. Skipping...')
+            print(f'\tSkipping {title}. Its already been downloaded.')
             return
 
         # Set a temporary directory for the downloaded MP4 file
