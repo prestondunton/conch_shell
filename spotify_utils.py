@@ -13,6 +13,19 @@ client_credentials_manager = SpotifyClientCredentials(client_id=client_id, clien
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
+def get_song_name_and_artist(link):
+    # Extract the track ID from the shareable link
+    track_id = link.split('/')[-1].split('?')[0]
+
+    # Retrieve track information
+    track = sp.track(track_id)
+    song_name = track['name']
+    artist_name = track['artists'][0]['name']
+
+    return song_name, artist_name
+
+
+
 def get_playlist_tracks(playlist_url):
     # Get playlist ID from the playlist URL
     playlist_id = playlist_url.split("/")[-1].split("?")[0]
