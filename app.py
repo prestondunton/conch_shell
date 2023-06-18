@@ -10,6 +10,7 @@ STORED_PLAYLISTS = {
         "Sal + Preston": "https://open.spotify.com/playlist/2w9RXal3mjqEgvNjRA13qp?si=f1dcb6beb0d34911",
         "Season Finale": "https://open.spotify.com/playlist/2YlweeE0qha0ITfvpeNwSr?si=4e113a106fce4950",
         "June Mix": "https://open.spotify.com/playlist/7pyjrgdqLKeLW3GiVfgNyZ?si=44c8809f7f0241be",
+        "Songs to mix" : "https://open.spotify.com/playlist/6MOfGpQPUtLx1L1CnXen3X?si=844b90367dda4554",
         "Other": None
     }
 
